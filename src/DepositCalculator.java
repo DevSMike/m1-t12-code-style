@@ -4,20 +4,20 @@ public class DepositCalculator
 {
     double calculateComplexPercent(double amount, double yearRate, int depositPeriod) {
         double pay = amount * Math.pow((1 + yearRate / 12), 12 * depositPeriod);
-        return round(pay, 2);
+        return round(pay, 2); //Лучше не передавать 2, а сразу присвоить scale 100, но это не точно
     }
 
     double calculateSimplePercent(double amount, double yearRate, int depositPeriod) {
-         return round(amount + amount * yearRate * depositPeriod, 2);
+         return round(amount + amount * yearRate * depositPeriod, 2); //Наверное было бы лучше формулу вынести из передаваемых параметров
     }
 
     double round(double value, int places) {
         double scale = Math.pow(10, places);
-        return Math.round(value * scale) / scale;
+        return Math.round(value * scale) / scale; //Здесь понял, что я ошибся в своём коде
     }
 
     void getDepositForYears() {
-        int period;
+        int period; //Здесь мне кажется проще создать переменные сразу со сканнером
         int action;
 
         Scanner scanner = new Scanner(System.in);
@@ -36,6 +36,6 @@ public class DepositCalculator
     }
 
     public static void main(String[] args) {
-        new DepositCalculator().getDepositForYears();
+        new DepositCalculator().getDepositForYears(); //Хорошее решение, я не додумался даже
     }
 }
